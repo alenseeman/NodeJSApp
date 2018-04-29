@@ -1,0 +1,54 @@
+<%- include('includes/header') %>
+
+<div class="container reg-page">
+ <h2 class="form-signin-heading text-center">Available/Booked</h2>
+ <div class="form-signin">
+  <legend>Select dates when you are booked:</legend>
+  
+  <input type="date" class="form-control" name="booking" id="datePicker" required autofocus="">
+  
+  <button class="btn btn-primary btn-success btn-xs" onClick="addBooking()">Add</button>
+</div>
+<div class="form-signin">
+  <form method="post" action="/create/bookings" class="form-signin">
+    <button class="btn btn-primary btn-primary btn-lg float-right" type="submit">Next</button>
+  </form>
+  <br>
+  <br>
+  <div id="errorBooking"></div>
+  <h5> Booked dates: </h5>
+  <ul class="list-group text-center" id='allbookings'>
+  </ul>
+</div>
+</div> <!-- /container -->
+
+<script>
+
+  function addBooking()
+  {
+    var data ={};
+    data.date=document.getElementById('datePicker').value;
+    console.log(data.date);
+    $.ajax({
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      url: 'http://localhost:3000/create/addBooking',            
+      success: function(data) {
+        console.log('success');
+        var temp=document.getElementById('allbookings').innerHTML;                       
+        if(JSON.stringify(data)=='"err"')
+        {
+          document.getElementById('errorBooking').innerHTML ='      <div id="editSuccess" class="alert alert-warning alert-dismissible "><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> Date already booked!</div>';
+        } 
+        else
+        { 
+          document.getElementById('allbookings').innerHTML =temp+'<li class="list-group-item">'+document.getElementById('datePicker').value+'</li>'
+          
+        }
+      }                   }); 
+  }
+
+
+</script>
+<%- include('includes/footer') %>

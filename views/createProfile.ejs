@@ -1,0 +1,74 @@
+<%- include('includes/header') %>
+
+<div class="container reg-page">
+	<% if(locals.errors){ %>
+  <% errors.forEach(function(error){ %>
+  <div class="alert alert-danger"> <%= error.msg %> </div>
+  <%	}) %>
+  <% } %>
+  <form method="post" action="/create/new" class="form-signin">
+    <h2 class="form-signin-heading text-center">Create Profile</h2>
+    <label >Birth Date</label>
+    <input type="date" class="form-control" name="bday" required autofocus="">
+    
+    <label >Address</label>
+    <input type="text" name="address" class="form-control" placeholder="Address" value="<%= (!!locals.address)?address:'' %>" required autofocus>
+    
+    <label >City</label>
+    <input type="text" name="city" class="form-control" value="<%= (!!locals.city)?city:'' %>" placeholder="City" required>
+    <label >Phone number</label>
+    <input type="text" name="numberPhone" class="form-control" placeholder="Phone number" value="<%= (!!locals.numberPhone)?numberPhone:'' %>" required autofocus>
+    <label>Type:</label>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="typeUser" id="soloArtist" value="Solo Artist" checked>
+      <label class="form-check-label" for="typeUser">Solo Artist</label>
+    </div>
+    <div class="form-check form-check-inline container-form">
+      <input class="form-check-input" type="radio" name="typeUser" id="twoPiece" value="Two Piece">
+      <label class="form-check-label" for="typeUser">Two Piece</label>
+    </div>
+    <div class="form-check form-check-inline container-form">
+      <input class="form-check-input" type="radio" name="typeUser" id="threePiece" value="Three Piece">
+      <label class="form-check-label" for="typeUser">Three Piece</label>
+    </div>
+    <div class="form-check form-check-inline container-form">
+      <input class="form-check-input" type="radio" name="typeUser" id="threePiece" value="DJ">
+      <label class="form-check-label" for="typeUser">DJ</label>
+    </div>
+    <div class="form-check form-check-inline container-form">
+      <input class="form-check-input" type="radio" name="typeUser" id="other" value="Other">
+      <label class="form-check-label" for="typeUser">Other</label>
+    </div>
+    <label>Post Code</label>
+    <input type="number" name="postCode" class="form-control" value="<%= (!!locals.postCode)?postCode:'' %>" placeholder="Post Code" required autofocus>
+    
+
+    <label>Country</label>
+    <input type="text" name="country" class="form-control" value="<%= (!!locals.country)?coutry:'' %>" placeholder="Country" required autofocus>
+    
+    <label>Gender:</label>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+      <label class="form-check-label" for="male">Male</label>
+    </div>
+    <div class="form-check form-check-inline container-form">
+      <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+      <label class="form-check-label" for="female">Female</label>
+    </div>
+    <br>
+    <label>Bio</label>
+    <textarea name="bio" maxlength="255" class="form-control" placeholder="Write about yourself" value="<%= (!!locals.bio)?bio:'' %>" required ></textarea>
+    <label >Youtube Link</label>
+    <input type="url" name="linkYoutube" class="form-control" placeholder="Youtube Link" value="<%= (!!locals.linkYoutube)?linkYoutube:'' %>" required>
+    <label>Minimum price per hour</label>
+    <input type="number" name="minPrice" class="form-control" value="<%= (!!locals.minPrice)?minPrice:'' %>" placeholder="Min price per hour" required autofocus>
+    <label>Maximum price per hour</label>
+    <input type="number" name="maxPrice" class="form-control" value="<%= (!!locals.maxPrice)?maxPrice:'' %>" placeholder="Max price per hour" required autofocus>
+    <br>
+    <button class="btn btn-primary btn-success btn-lg text-center" type="submit">Next</button>
+    
+  </form>
+
+</div> <!-- /container -->
+
+<%- include('includes/footer') %>

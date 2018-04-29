@@ -1,0 +1,35 @@
+<%- include('includes/header') %>
+
+<div class="container reg-page">
+ <h2 class="form-signin-heading text-center">Venues</h2>
+
+ 
+ <form method="post" action="/create/addVenue" class="form-signin">
+  <legend>Add venue:</legend>
+  Name:<br>
+  <input type="text" name="nameVenue" class="form-control" placeholder="Name"  value="<%= (!!locals.nameVenue)?nameVenue:'' %>" required>
+  Type:<br>
+  <input type="text" name="typeVenue" class="form-control" placeholder="Type" value="<%= (!!locals.typeVenue)?typeVenue:'' %>" required>
+  Location:<br>
+  <input type="text" name="locationVenue" class="form-control" placeholder="Location" value="<%= (!!locals.locationVenue)?locationVenue:'' %>" required>
+  <button class="btn btn-primary btn-success btn-xs" type="submit">Add</button>
+</form>
+<div class="form-signin">
+  <form method="post" action="/create/venues" class="form-signin">
+    <button class="btn btn-primary btn-primary btn-lg float-right" type="submit">Next</button>
+  </form>
+  <br>
+  <br>
+  <h5> Added venues: </h5>
+  <ul class="list-group text-center">
+   <% if(venues.length==0){ %>
+  <p>No added venues</p>
+  <% } %>
+    <% for(var i=0;i<venues.length;i++){ %>
+    <li class="list-group-item"> <%= venues[i][0] %> </li>
+    <% } %>
+  </ul>
+</div>
+</div> <!-- /container -->
+
+<%- include('includes/footer') %>

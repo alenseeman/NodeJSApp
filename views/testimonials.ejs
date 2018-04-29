@@ -1,0 +1,33 @@
+<%- include('includes/header') %>
+
+<div class="container reg-page">
+ <h2 class="form-signin-heading text-center">Testimonials</h2>
+
+ 
+ <form method="post" action="/create/addTestimonial" class="form-signin">
+  <legend>Add testimonial:</legend>
+  Name:<br>
+  <input type="text" name="nameTestimonial" class="form-control" placeholder="Name"  value="<%= (!!locals.nameTestimonial)?nameTestimonial:'' %>" required><br>
+  Content:<br>
+  <textarea name="contentTestimonial" maxlength="255" class="form-control" placeholder="Content" value="<%= (!!locals.contentTestimonial)?contentTestimonial:'' %>" required></textarea>
+  <button class="btn btn-primary btn-success btn-xs" type="submit">Add</button>
+</form>
+<div class="form-signin">
+  <form method="post" action="/create/testimonials" class="form-signin">
+    <button class="btn btn-primary btn-primary btn-lg float-right" type="submit">Next</button>
+  </form>
+  <br>
+  <br>
+  <h5> Added testimonials: </h5>
+  <ul class="list-group text-center">
+  <% if(testimonials.length==0){ %>
+  <p>No added testimonials</p>
+  <% } %>
+    <% for(var i=0;i<testimonials.length;i++){ %>
+    <li class="list-group-item"> <%= testimonials[i][0] %> </li>
+    <% } %>
+  </ul>
+</div>
+</div> <!-- /container -->
+
+<%- include('includes/footer') %>
